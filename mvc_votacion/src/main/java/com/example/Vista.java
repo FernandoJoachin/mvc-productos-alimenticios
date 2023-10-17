@@ -35,8 +35,6 @@ public class Vista {
     }
 
     public void iniciar() {
-        generarGraficoBarras();
-        generarGraficoPastel();
         try {
             List<String> nombresProductos = Files.readAllLines(Paths.get("src/main/java/com/example/productos.txt"));
             for (String nombre : nombresProductos) {
@@ -113,6 +111,9 @@ public class Vista {
     
             // Hacer visible el marco
             marco.setVisible(true);
+
+            generarGraficoBarras();
+            generarGraficoPastel();
     }
 
     public void actualizarContadores() {

@@ -6,7 +6,7 @@ public class Producto {
 
     public Producto(String nombre) {
         this.nombre = nombre;
-        this.votos = 0;
+        this.votos = 7;
     }
 
     public String getNombre() {
