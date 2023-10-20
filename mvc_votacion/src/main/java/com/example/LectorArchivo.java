@@ -8,7 +8,7 @@ import java.util.List;
 
 public class LectorArchivo {
 
-    public ArrayList<Producto> obtenerProductos() {
+    public static ArrayList<Producto> obtenerProductos() {
         ArrayList<Producto> productos = new ArrayList<>();
         try {
             List<String> nombresProductos = Files.readAllLines(Paths.get("src/main/java/com/example/productos.txt"));
@@ -19,7 +19,6 @@ public class LectorArchivo {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return productos;
     }
 }

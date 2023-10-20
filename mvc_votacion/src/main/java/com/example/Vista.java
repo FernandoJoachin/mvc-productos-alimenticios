@@ -32,14 +32,17 @@ public class Vista {
     private static int contadorProducto2 = 0;
     private static int contadorProducto3 = 0;
 
-    public Vista(Producto producto) {
-        // Inicializa la interfaz de usuario aquí
-        this.iniciar();
+    protected JLabel contadorProducto1Label;
+    protected JLabel contadorProducto2Label ;
+    protected JLabel contadorProducto3Label;
+
+    public Vista(ArrayList<Producto> productos) {
+        this.iniciar(productos);
     }
 
-    public void iniciar() {
-        generarGraficoBarras();
-        generarGraficoPastel();
+    public void iniciar(ArrayList<Producto> productos) {
+        generarGraficoBarras(productos);
+        generarGraficoPastel(productos);
 
         // Configura y muestra la interfaz de usuario
     
@@ -49,9 +52,9 @@ public class Vista {
             marco.setSize(700, 400);
             marco.setLayout(new GridLayout(3, 1));
 
-            Producto producto1 = this.productos.get(0);
-            Producto producto2 = this.productos.get(1);
-            Producto producto3 = this.productos.get(2);
+            Producto producto1 = productos.get(0);
+            Producto producto2 = productos.get(1);
+            Producto producto3 = productos.get(2);
     
             // Etiquetas para los productos
             JLabel etiquetaProducto1 = new JLabel(producto1.getNombre());
@@ -59,38 +62,13 @@ public class Vista {
             JLabel etiquetaProducto3 = new JLabel(producto3.getNombre());
     
             // Contadores para cada producto
-            JLabel contadorProducto1Label = new JLabel("Contador: " + contadorProducto1);
-            JLabel contadorProducto2Label = new JLabel("Contador: " + contadorProducto2);
-            JLabel contadorProducto3Label = new JLabel("Contador: " + contadorProducto3);
+            this.contadorProducto1Label = new JLabel("Contador: " + contadorProducto1);
+            this.contadorProducto2Label = new JLabel("Contador: " + contadorProducto2);
+            this.contadorProducto3Label = new JLabel("Contador: " + contadorProducto3);
 
             botonProducto1 = new JButton("Incrementar " + producto1.getNombre());
             botonProducto2 = new JButton("Incrementar " + producto2.getNombre());
             botonProducto3 = new JButton("Incrementar " + producto3.getNombre());
-    
-            // Agregar ActionListener para los botones
-            botonProducto1.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    producto1.votar();
-                    contadorProducto1Label.setText("Contador: " + producto1.getVotos());
-                }
-            });
-    
-            botonProducto2.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    producto2.votar();
-                    contadorProducto2Label.setText("Contador: " + producto2.getVotos());
-                }
-            });
-    
-            botonProducto3.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    producto3.votar();
-                    contadorProducto3Label.setText("Contador: " + producto3.getVotos());
-                }
-            });
     
             // Agregar componentes al marco
             marco.add(etiquetaProducto1);
@@ -125,9 +103,9 @@ public class Vista {
         // Actualiza los contadores de votos en la interfaz
     }
 
-    public void generarGraficoBarras() {
+    public void generarGraficoBarras(ArrayList<Producto> productos) {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        for (Producto producto : this.productos) {
+        for (Producto producto : productos) {
             dataset.addValue(producto.getVotos(), "Votos", producto.getNombre());
         }
     
@@ -144,7 +122,7 @@ public class Vista {
         frame.setVisible(true);
     }
 
-    public void generarGraficoPastel() {
+    public void generarGraficoPastel(ArrayList<Producto> productos) {
        DefaultPieDataset<String> dataset = new DefaultPieDataset<>();
         for (Producto producto : productos) {
             dataset.setValue(producto.getNombre(), producto.getVotos());
