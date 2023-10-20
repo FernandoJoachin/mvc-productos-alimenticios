@@ -31,7 +31,6 @@ public class Vista {
 
     public Vista(Controlador controlador) {
         this.controlador = controlador;
-        // Inicializa la interfaz de usuario aquí
     }
 
     public void iniciar() {
@@ -44,9 +43,7 @@ public class Vista {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // Configura y muestra la interfaz de usuario
     
-            // Crear el marco (ventana) principal
             JFrame marco = new JFrame("Votaciones");
             marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             marco.setSize(700, 400);
@@ -56,22 +53,18 @@ public class Vista {
             Producto producto2 = this.productos.get(1);
             Producto producto3 = this.productos.get(2);
     
-            // Etiquetas para los productos
             JLabel etiquetaProducto1 = new JLabel(producto1.getNombre());
             JLabel etiquetaProducto2 = new JLabel(producto2.getNombre());
             JLabel etiquetaProducto3 = new JLabel(producto3.getNombre());
     
-            // Botones para cada producto
             JButton botonProducto1 = new JButton("Incrementar " + producto1.getNombre());
             JButton botonProducto2 = new JButton("Incrementar " + producto2.getNombre());
             JButton botonProducto3 = new JButton("Incrementar " + producto3.getNombre());
     
-            // Contadores para cada producto
             JLabel contadorProducto1Label = new JLabel("Contador: " + contadorProducto1);
             JLabel contadorProducto2Label = new JLabel("Contador: " + contadorProducto2);
             JLabel contadorProducto3Label = new JLabel("Contador: " + contadorProducto3);
     
-            // Agregar ActionListener para los botones
             botonProducto1.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -96,7 +89,6 @@ public class Vista {
                 }
             });
     
-            // Agregar componentes al marco
             marco.add(etiquetaProducto1);
             marco.add(botonProducto1);
             marco.add(contadorProducto1Label);
@@ -109,7 +101,6 @@ public class Vista {
             marco.add(botonProducto3);
             marco.add(contadorProducto3Label);
     
-            // Hacer visible el marco
             marco.setVisible(true);
 
             generarGraficoBarras();
@@ -117,7 +108,7 @@ public class Vista {
     }
 
     public void actualizarContadores() {
-        // Actualiza los contadores de votos en la interfaz
+
     }
 
     public void generarGraficoBarras() {

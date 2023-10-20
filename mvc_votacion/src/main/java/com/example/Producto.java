@@ -19,6 +19,6 @@ public class Producto {
 
     public void votar() {
         this.votos++;
-        // Lógica para guardar la votación en un archivo aquí
+        // Guardar la votación en un archivo aquí
     }
 }
