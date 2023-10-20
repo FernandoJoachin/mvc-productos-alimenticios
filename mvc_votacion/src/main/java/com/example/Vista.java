@@ -23,27 +23,27 @@ public class Vista {
     // private JFrame frame;
     // private JLabel[] labels;
     // private JButton[] botones;
-    private ArrayList<Producto> productos = new ArrayList<>();
+    // Botones para cada producto
+    private JButton botonProducto1;
+    private JButton botonProducto2;
+    private JButton botonProducto3;
 
     private static int contadorProducto1 = 0;
     private static int contadorProducto2 = 0;
     private static int contadorProducto3 = 0;
 
-    public Vista(Controlador controlador) {
-        this.controlador = controlador;
+    public Vista(Producto producto) {
+        // Inicializa la interfaz de usuario aquí
+        this.iniciar();
     }
 
     public void iniciar() {
-        try {
-            List<String> nombresProductos = Files.readAllLines(Paths.get("src/main/java/com/example/productos.txt"));
-            for (String nombre : nombresProductos) {
-                Producto producto = new Producto(nombre);
-                this.productos.add(producto);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        generarGraficoBarras();
+        generarGraficoPastel();
+
+        // Configura y muestra la interfaz de usuario
     
+            // Crear el marco (ventana) principal
             JFrame marco = new JFrame("Votaciones");
             marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             marco.setSize(700, 400);
@@ -53,18 +53,21 @@ public class Vista {
             Producto producto2 = this.productos.get(1);
             Producto producto3 = this.productos.get(2);
     
+            // Etiquetas para los productos
             JLabel etiquetaProducto1 = new JLabel(producto1.getNombre());
             JLabel etiquetaProducto2 = new JLabel(producto2.getNombre());
             JLabel etiquetaProducto3 = new JLabel(producto3.getNombre());
     
-            JButton botonProducto1 = new JButton("Incrementar " + producto1.getNombre());
-            JButton botonProducto2 = new JButton("Incrementar " + producto2.getNombre());
-            JButton botonProducto3 = new JButton("Incrementar " + producto3.getNombre());
-    
+            // Contadores para cada producto
             JLabel contadorProducto1Label = new JLabel("Contador: " + contadorProducto1);
             JLabel contadorProducto2Label = new JLabel("Contador: " + contadorProducto2);
             JLabel contadorProducto3Label = new JLabel("Contador: " + contadorProducto3);
+
+            botonProducto1 = new JButton("Incrementar " + producto1.getNombre());
+            botonProducto2 = new JButton("Incrementar " + producto2.getNombre());
+            botonProducto3 = new JButton("Incrementar " + producto3.getNombre());
     
+            // Agregar ActionListener para los botones
             botonProducto1.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -89,6 +92,7 @@ public class Vista {
                 }
             });
     
+            // Agregar componentes al marco
             marco.add(etiquetaProducto1);
             marco.add(botonProducto1);
             marco.add(contadorProducto1Label);
@@ -101,14 +105,24 @@ public class Vista {
             marco.add(botonProducto3);
             marco.add(contadorProducto3Label);
     
+            // Hacer visible el marco
             marco.setVisible(true);
+    }
 
-            generarGraficoBarras();
-            generarGraficoPastel();
+    void addVotoListenerBtn1(ActionListener voto){
+        botonProducto1.addActionListener(voto);
+    }
+
+    void addVotoListenerBtn2(ActionListener voto){
+        botonProducto2.addActionListener(voto);
+    }
+
+    void addVotoListenerBtn3(ActionListener voto){
+        botonProducto3.addActionListener(voto);
     }
 
     public void actualizarContadores() {
-
+        // Actualiza los contadores de votos en la interfaz
     }
 
     public void generarGraficoBarras() {

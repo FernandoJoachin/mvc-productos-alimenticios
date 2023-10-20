@@ -6,7 +6,7 @@ public class Producto {
 
     public Producto(String nombre) {
         this.nombre = nombre;
-        this.votos = 7;
+        this.votos = 0;
     }
 
     public String getNombre() {
@@ -19,6 +19,6 @@ public class Producto {
 
     public void votar() {
         this.votos++;
-        // Guardar la votación en un archivo aquí
+        // Lógica para guardar la votación en un archivo aquí
     }
 }
