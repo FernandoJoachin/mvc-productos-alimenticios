@@ -1,11 +1,7 @@
 package com.example;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.awt.event.*;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class Controlador {
     private Vista vista;
@@ -22,31 +18,32 @@ public class Controlador {
 
     class votoListener implements ActionListener {
         private int tipoBtn;
-        public votoListener(int tipoBtn){
+
+        public votoListener(int tipoBtn) {
             this.tipoBtn = tipoBtn;
         }
+
         @Override
         public void actionPerformed(ActionEvent e) {
             productos.get(this.tipoBtn).votar();
-            switch(this.tipoBtn){
+            switch (this.tipoBtn) {
                 case 0:
-                    vista.contadorProducto1Label.setText("Contador: " +  productos.get(0).getVotos());
+                    vista.actualizarDatosGraficos(productos);
                     break;
                 case 1:
-                    vista.contadorProducto2Label.setText("Contador: " +  productos.get(1).getVotos());
+                    vista.actualizarDatosGraficos(productos);
                     break;
                 case 2:
-                    vista.contadorProducto3Label.setText("Contador: " +  productos.get(2).getVotos());
+                    vista.actualizarDatosGraficos(productos);
                     break;
-            };
+            }
+            ;
         }
     };
 
     public void votarPorProducto(int indice) {
         Producto producto = productos.get(indice);
         producto.votar();
-        vista.actualizarContadores();
-        // Registra la votación en el archivo correspondiente
         // Registra la acción en la bitácora
     }
 }
