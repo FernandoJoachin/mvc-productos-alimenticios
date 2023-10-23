@@ -51,7 +51,7 @@ public class Vista {
         JLabel etiquetaProducto3 = new JLabel(producto3.getNombre());
 
         botonProducto1 = new JButton("Votar por " + producto1.getNombre());
-        botonProducto2 = new JButton("Votar por" + producto2.getNombre());
+        botonProducto2 = new JButton("Votar por " + producto2.getNombre());
         botonProducto3 = new JButton("Votar por " + producto3.getNombre());
 
         marco.add(etiquetaProducto1);
