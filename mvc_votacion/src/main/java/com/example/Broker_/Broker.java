@@ -6,24 +6,12 @@ import java.util.Scanner;
 
 import com.example.LectorArchivo;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author user
- */
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.util.Scanner;
-
-import com.example.LectorArchivo;
-
 public class Broker {
-    public static void main(String[] args) throws IOException {
+    public Broker() {
+
+    }
+
+    public void init() throws IOException {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Ingresa el IP de la computadora: ");
@@ -45,5 +33,9 @@ public class Broker {
             System.exit(-1);
         }
     }
-}
 
+    public static void main(String[] args) throws Exception {
+        Broker broker = new Broker();
+        broker.init();
+    }
+}

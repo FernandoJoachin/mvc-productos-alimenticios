@@ -1,14 +1,19 @@
 package com.example.cliente;
 
-import java.net.*;
-import java.io.*;
 import org.json.*;
 import com.example.LectorArchivo;
+
+import java.net.*;
+import java.io.*;
 
 public class Client {
     private Socket clientSocket;
     private PrintWriter out;
     private BufferedReader in;
+
+    public Client() {
+
+    }
 
     public void startConnection(String ip, int port) throws Exception {
         clientSocket = new Socket(ip, port);
@@ -31,11 +36,20 @@ public class Client {
         clientSocket.close();
     }
 
-    public static void main(String[] args) {
-        String[] ip = LectorArchivo.lecturaArchivo("src/main/java/com/example/ipAdress.txt");
-        String ipAdress = ip[0];
-        
-        Vista vista = new Vista(ipAdress, 9974);
-        Controlador controlador = new Controlador(vista, ipAdress, 9974);
+    public void init() {
+        try {
+            String[] ip = LectorArchivo.lecturaArchivo("src/main/java/com/example/ipAdress.txt");
+            String ipAdress = ip[0];
+
+            Vista vista = new Vista(ipAdress, 9974);
+            Controlador controlador = new Controlador(vista, ipAdress, 9974);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        Client client = new Client();
+        client.init();
     }
 }
