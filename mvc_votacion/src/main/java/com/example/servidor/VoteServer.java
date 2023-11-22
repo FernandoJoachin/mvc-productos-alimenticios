@@ -1,6 +1,7 @@
 package com.example.servidor;
 
 import java.net.*;
+import java.util.Scanner;
 import java.io.*;
 
 public class VoteServer {
@@ -10,7 +11,14 @@ public class VoteServer {
     }
 
     public void init() throws Exception {
-        int serverPortNumber = 9975;
+         Scanner scanner = new Scanner(System.in);
+
+/*         System.out.print("Ingresa el IP de la computadora: ");
+        String ipAddress = scanner.nextLine();  */
+
+        System.out.print("Ingresa el puerto del Servidor: ");
+        int serverPortNumber = Integer.parseInt(scanner.nextLine());
+        
         boolean listening = true;
 
         try (ServerSocket serverSocket = new ServerSocket(serverPortNumber)) {

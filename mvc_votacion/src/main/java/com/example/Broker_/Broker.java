@@ -15,9 +15,7 @@ public class Broker {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Ingresa el IP de la computadora: ");
-        String ipAdress = scanner.nextLine();
-
-        LectorArchivo.EscribirArchivo(ipAdress, "src/main/java/com/example/ipAdress.txt");
+        String ipAddress = scanner.nextLine();
 
         System.out.print("Ingresa el puerto del broker: ");
         int puertoBroker = Integer.parseInt(scanner.nextLine());
@@ -26,7 +24,7 @@ public class Broker {
             boolean listening = true;
 
             while (listening) {
-                new MultiServerThread(serverSocket.accept()).start();
+                new MultiServerThread(serverSocket.accept(), ipAddress).start();
             }
         } catch (IOException e) {
             System.err.println("Could not listen on port " + puertoBroker);

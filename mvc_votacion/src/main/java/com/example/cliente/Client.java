@@ -4,6 +4,7 @@ import org.json.*;
 import com.example.LectorArchivo;
 
 import java.net.*;
+import java.util.Scanner;
 import java.io.*;
 
 public class Client {
@@ -38,11 +39,16 @@ public class Client {
 
     public void init() {
         try {
-            String[] ip = LectorArchivo.lecturaArchivo("src/main/java/com/example/ipAdress.txt");
-            String ipAdress = ip[0];
+            Scanner scanner = new Scanner(System.in);
 
-            Vista vista = new Vista(ipAdress, 9974);
-            Controlador controlador = new Controlador(vista, ipAdress, 9974);
+            System.out.print("Ingresa el IP de la computadora: ");
+            String ipAddress = scanner.nextLine();
+
+            System.out.print("Ingresa el puerto del broker: ");
+            int puertoBroker = Integer.parseInt(scanner.nextLine());
+
+            Vista vista = new Vista(ipAddress, puertoBroker);
+            Controlador controlador = new Controlador(vista, ipAddress, puertoBroker);
         } catch (Exception e) {
             e.printStackTrace();
         }

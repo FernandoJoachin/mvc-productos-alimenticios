@@ -22,10 +22,12 @@ import com.example.LectorArchivo;
  */
 public class MultiServerThread extends Thread {
     private Socket socket = null;
+    private String ipAddress;
 
-    public MultiServerThread(Socket socket) {
+    public MultiServerThread(Socket socket, String ipAddress) {
         super("KKMultiServerThread");
         this.socket = socket;
+        this.ipAddress = ipAddress;
     }
 
     public void run() {
@@ -37,12 +39,9 @@ public class MultiServerThread extends Thread {
                                 socket.getInputStream()));) {
             String inputLine, outputLine;
             Protocol kkp = new Protocol();
-            
-            String[] ip = LectorArchivo.lecturaArchivo("src/main/java/com/example/ipAdress.txt");
-            String ipAdress = ip[0];
 
             while ((inputLine = in.readLine()) != null) {
-                outputLine = kkp.processInput(new JSONObject(inputLine), ipAdress).toString();
+                outputLine = kkp.processInput(new JSONObject(inputLine), ipAddress).toString();
 
                 out.println(outputLine);
                 if (outputLine.equals("Bye"))

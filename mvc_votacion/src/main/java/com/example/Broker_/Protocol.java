@@ -42,22 +42,22 @@ public class Protocol {
         return output;
     }
 
-    public JSONObject switchEjecutar(String servicios, JSONObject mensaje, String ipAdress) throws SocketException, UnknownHostException {
+    public JSONObject switchEjecutar(String servicios, JSONObject mensaje, String ipAddress) throws SocketException, UnknownHostException {
         ClientBroker cliente = null;
         switch (servicios) {
             case "contar":
-                cliente = new ClientBroker(armarMsjSinParam(mensaje), ipAdress);
+                cliente = new ClientBroker(armarMsjSinParam(mensaje), ipAddress);
                 break;
             case "votar":
             System.out.println("VOTANDO");
-                cliente = new ClientBroker(armarMensajeVotar(mensaje), ipAdress);
+                cliente = new ClientBroker(armarMensajeVotar(mensaje), ipAddress);
                 break;
             case "registrar":
             System.out.println("REGISTRAR");
-                cliente = new ClientBroker(armarMensajeRegistrar(mensaje), ipAdress);
+                cliente = new ClientBroker(armarMensajeRegistrar(mensaje), ipAddress);
                 break;
             case "listar":
-                cliente = new ClientBroker(armarMsjSinParam(mensaje), ipAdress);
+                cliente = new ClientBroker(armarMsjSinParam(mensaje), ipAddress);
                 break;
         }
         return cliente.cliente();
