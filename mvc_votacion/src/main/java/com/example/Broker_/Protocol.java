@@ -18,17 +18,17 @@ import org.json.JSONObject;
 public class Protocol {
     ListaDeServicios servicios = new ListaDeServicios();
 
-    public JSONObject processInput(JSONObject input) throws SocketException, UnknownHostException {
+    public JSONObject processInput(JSONObject input, String ipAdress) throws SocketException, UnknownHostException {
 
         switch (input.getString("servicio")) {
-            case "registar":
+            case "registrar":
                 return servicios.registrar(input.getString("valor1"),
                         input.getInt("valor2"), input.getString("valor3"),
                         input.getInt("valor4"));
             case "listar":
                 return servicios.listarServicios(input.getString("valor1"));
             case "ejecutar":
-                return switchEjecutar(input.getString("valor1"), input);
+                return switchEjecutar(input.getString("valor1"), input, ipAdress);
         }
         return null;
     }
@@ -42,21 +42,22 @@ public class Protocol {
         return output;
     }
 
-    public JSONObject switchEjecutar(String servicios, JSONObject mensaje) throws SocketException, UnknownHostException {
+    public JSONObject switchEjecutar(String servicios, JSONObject mensaje, String ipAdress) throws SocketException, UnknownHostException {
         ClientBroker cliente = null;
         switch (servicios) {
             case "contar":
-                cliente = new ClientBroker(armarMsjSinParam(mensaje));
+                cliente = new ClientBroker(armarMsjSinParam(mensaje), ipAdress);
                 break;
             case "votar":
             System.out.println("VOTANDO");
-                cliente = new ClientBroker(armarMensajeVotar(mensaje));
+                cliente = new ClientBroker(armarMensajeVotar(mensaje), ipAdress);
                 break;
             case "registrar":
-                cliente = new ClientBroker(armarMensajeRegistrar(mensaje));
+            System.out.println("REGISTRAR");
+                cliente = new ClientBroker(armarMensajeRegistrar(mensaje), ipAdress);
                 break;
             case "listar":
-                cliente = new ClientBroker(armarMsjSinParam(mensaje));
+                cliente = new ClientBroker(armarMsjSinParam(mensaje), ipAdress);
                 break;
         }
         return cliente.cliente();

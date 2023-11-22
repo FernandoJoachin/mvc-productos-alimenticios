@@ -45,6 +45,10 @@ public class LectorArchivo {
     }
 
     public static void EscribirArchivo(String cadenaPermutada, String nombre) {
+        EscribirArchivo(cadenaPermutada, nombre, false);
+    }
+
+    public static void EscribirArchivo(String cadenaPermutada, String nombre, boolean adjuntar) {
         BufferedWriter bw = null;
         FileWriter fw = null;
         try {
@@ -54,7 +58,7 @@ public class LectorArchivo {
                 file.createNewFile();
             }
             // flag true, indica adjuntar información al archivo.
-            fw = new FileWriter(file.getAbsoluteFile());
+            fw = new FileWriter(file.getAbsoluteFile(), adjuntar);
             bw = new BufferedWriter(fw);
             bw.write(cadenaPermutada);
             bw.newLine();

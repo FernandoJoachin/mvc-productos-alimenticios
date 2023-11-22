@@ -17,8 +17,6 @@ public class Vista {
     private JButton botonProducto1;
     private JButton botonProducto2;
     private JButton botonProducto3;
-    private JButton botonContar;
-    private JButton botonListar;
     protected JLabel etiquetaProducto1;
     protected JLabel etiquetaProducto2;
     protected JLabel etiquetaProducto3;
@@ -71,9 +69,6 @@ public class Vista {
             this.botonProducto2 = new JButton("Votar por " + votosProducto.getString("respuesta2"));
             this.botonProducto3 = new JButton("Votar por " + votosProducto.getString("respuesta3"));
 
-            // this.botonContar = new JButton("Contar");
-            // this.botonListar = new JButton("Listar");
-
             marco.add(etiquetaProducto1);
             marco.add(botonProducto1);
 
@@ -82,9 +77,6 @@ public class Vista {
 
             marco.add(etiquetaProducto3);
             marco.add(botonProducto3);
-
-            // marco.add(botonContar);
-            // marco.add(botonListar);
 
             marco.setVisible(true);
         } catch (Exception e) {
@@ -104,13 +96,6 @@ public class Vista {
         botonProducto3.addActionListener(voto);
     }
 
-    void addVistaListenerContar(){
-        
-    }
-
-    void addVistaListenerListar(){
-
-    }
 
     public void actualizarDatosGraficos(String nombreProducto, int votos) {
         graficoBarras.setValue(votos, "Votos", nombreProducto);
@@ -143,11 +128,4 @@ public class Vista {
         frame.setVisible(true);
     }
 
-    public void generarVistaContar() {
-        
-    }
-
-    public void generarVistaListar(){
-        
-    }
 }

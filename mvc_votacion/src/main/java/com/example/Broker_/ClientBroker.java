@@ -24,10 +24,12 @@ import org.json.JSONObject;
  */
 public class ClientBroker {
     private JSONObject mensaje;
+    private String ipAdress;
 
     // Constructor
-    public ClientBroker(JSONObject mensaje) {
+    public ClientBroker(JSONObject mensaje, String ipAdress) {
         this.mensaje = mensaje;
+        this.ipAdress = ipAdress;
     }
 
     public JSONObject cliente() throws SocketException, UnknownHostException {
@@ -37,7 +39,7 @@ public class ClientBroker {
             ip = socket.getLocalAddress();
         }
         String hostName = ip.getHostAddress();
-        hostName = "192.168.253.164";
+        hostName = ipAdress;
         int portNumber = 9975;
         try (
                 Socket socket = new Socket(hostName, portNumber);

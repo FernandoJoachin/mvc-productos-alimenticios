@@ -3,6 +3,7 @@ package com.example.cliente;
 import java.net.*;
 import java.io.*;
 import org.json.*;
+import com.example.LectorArchivo;
 
 public class Client {
     private Socket clientSocket;
@@ -31,7 +32,10 @@ public class Client {
     }
 
     public static void main(String[] args) {
-        Vista vista = new Vista("192.168.253.164", 9974);
-        Controlador controlador = new Controlador(vista, "192.168.253.164", 9974);
+        String[] ip = LectorArchivo.lecturaArchivo("src/main/java/com/example/ipAdress.txt");
+        String ipAdress = ip[0];
+        
+        Vista vista = new Vista(ipAdress, 9974);
+        Controlador controlador = new Controlador(vista, ipAdress, 9974);
     }
 }

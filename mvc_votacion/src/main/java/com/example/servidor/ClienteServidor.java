@@ -31,9 +31,4 @@ public class ClienteServidor {
         out.close();
         clientSocket.close();
     }
-
-    public static void main(String[] args) {
-        Vista vista = new Vista("192.168.253.164", 9974);
-        Controlador controlador = new Controlador(vista, "192.168.253.164", 9974);
-    }
 }

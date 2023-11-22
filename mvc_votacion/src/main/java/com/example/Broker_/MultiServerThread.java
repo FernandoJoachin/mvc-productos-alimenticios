@@ -8,6 +8,8 @@ import java.net.Socket;
 
 import org.json.JSONObject;
 
+import com.example.LectorArchivo;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -35,9 +37,12 @@ public class MultiServerThread extends Thread {
                                 socket.getInputStream()));) {
             String inputLine, outputLine;
             Protocol kkp = new Protocol();
+            
+            String[] ip = LectorArchivo.lecturaArchivo("src/main/java/com/example/ipAdress.txt");
+            String ipAdress = ip[0];
 
             while ((inputLine = in.readLine()) != null) {
-                outputLine = kkp.processInput(new JSONObject(inputLine)).toString();
+                outputLine = kkp.processInput(new JSONObject(inputLine), ipAdress).toString();
 
                 out.println(outputLine);
                 if (outputLine.equals("Bye"))

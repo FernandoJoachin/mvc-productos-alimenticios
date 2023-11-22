@@ -32,7 +32,7 @@ public class ServiciosServidor {
     public static JSONObject generarRegistrar(String ipServidor, int puerto, String nombreServicio, int parametros) {
 
         JSONObject jsonToSend = new JSONObject();
-        jsonToSend.put("servicio", "registrar");
+        jsonToSend.put("servicio", "GenerarRegistrar");
         jsonToSend.put("variables", "4");
         jsonToSend.put("variable1", "servidor");
         jsonToSend.put("valor1", ipServidor);
@@ -66,19 +66,22 @@ public class ServiciosServidor {
         for (Producto producto : this.productos) {
             if (nombre.equals(producto.getNombre())) {
                 productoSeleccionado = producto;
+
+                String record = Bitacora.registrar(productoSeleccionado.getNombre());
+                LectorArchivo.EscribirArchivo(record, "src/main/java/com/example/bitacora.txt", true);
+
                 break;
             }
         }
 
         productoSeleccionado.votar();
-
         String contadorVotos = "";
         for (Producto producto : this.productos) {
             contadorVotos += producto.getVotos() + "\n";
         }
 
         LectorArchivo.EscribirArchivo(contadorVotos, "src/main/java/com/example/votos.txt");
-
+        
         JSONObject jsonToSend = new JSONObject();
         
         jsonToSend.put("servicio", "votar");
@@ -95,6 +98,7 @@ public class ServiciosServidor {
         LectorArchivo.EscribirArchivo(entrada, "src/main/java/com/example/bitacora.txt");
 
         String[] listaEventos = LectorArchivo.lecturaArchivo("src/main/java/com/example/bitacora.txt");
+    
 
         JSONObject jsonToSend = new JSONObject();
 

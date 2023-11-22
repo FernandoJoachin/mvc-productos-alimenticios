@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.json.JSONObject;
 
-import com.example.Bitacora;
 import com.example.Producto;
 
 import java.awt.event.*;
@@ -12,7 +11,6 @@ import java.awt.event.*;
 public class Controlador {
     private Vista vista;
     private ArrayList<Producto> productos;
-    private Bitacora bitacora;
     private Instrucciones instrucciones = new Instrucciones();
     private String ip;
     private int puerto;
@@ -21,8 +19,6 @@ public class Controlador {
         this.vista = vista;
         this.ip = ip;
         this.puerto = puerto;
-        this.bitacora = new Bitacora();
-        bitacora.crearArchivo();
 
         vista.addVotoListenerBtn1(new votoListener(1, this.ip, this.puerto));
         vista.addVotoListenerBtn2(new votoListener(2, this.ip, this.puerto));
@@ -97,6 +93,5 @@ public class Controlador {
         Producto producto = productos.get(indice);
         producto.votar();
         String texto = "Se ha votado por el producto " + producto.getNombre() + " en el metodo votarPorProducto()";
-        bitacora.escribirArchivo(texto);
     }
 }
