@@ -15,6 +15,8 @@ public class VoteServer {
 
 /*         System.out.print("Ingresa el IP de la computadora: ");
         String ipAddress = scanner.nextLine();  */
+        System.out.print("Ingresa el IP de la computadora: ");
+        String ipAddress = scanner.nextLine();
 
         System.out.print("Ingresa el puerto del Servidor: ");
         int serverPortNumber = Integer.parseInt(scanner.nextLine());
@@ -23,7 +25,7 @@ public class VoteServer {
 
         try (ServerSocket serverSocket = new ServerSocket(serverPortNumber)) {
             while (listening) {
-                new VoteMultiServerThread(serverSocket.accept()).start();
+                new VoteMultiServerThread(serverSocket.accept(), ipAddress).start();
             }
         } catch (IOException e) {
             System.err.println("Could not listen on port " + serverPortNumber);

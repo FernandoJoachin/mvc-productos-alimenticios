@@ -8,10 +8,11 @@ import java.io.*;
 
 public class VoteMultiServerThread extends Thread {
     private Socket socket = null;
+    private String ipAddress;
 
-    public VoteMultiServerThread(Socket socket) {
-        super("VoteMultiServerThread");
+    public VoteMultiServerThread(Socket socket, String ipAddress) {
         this.socket = socket;
+        this.ipAddress = ipAddress;
     }
 
     public void run() {
