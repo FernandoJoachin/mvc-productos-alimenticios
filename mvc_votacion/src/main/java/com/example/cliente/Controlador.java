@@ -46,8 +46,8 @@ public class Controlador {
                         String response = cliente.sendMessage(instrucciones.generarVotar(vista.etiquetaProducto1.getText()));
                         JSONObject votoProducto = new JSONObject(response);
 
-                        vista.actualizarDatosGraficos(votoProducto.getString("respuesta2"),
-                                votoProducto.getInt("valor2"));
+                        vista.actualizarDatosGraficos(votoProducto.getString("respuesta1"),
+                                votoProducto.getInt("valor1"));
                     } catch (Exception error) {
                         error.printStackTrace();
                         System.out.println("ERROR AL VOTAR EL PRIMER PRODUCTO");
@@ -61,8 +61,8 @@ public class Controlador {
 
                         JSONObject votoProducto = new JSONObject(response);
 
-                        vista.actualizarDatosGraficos(votoProducto.getString("respuesta2"),
-                                votoProducto.getInt("valor2"));
+                        vista.actualizarDatosGraficos(votoProducto.getString("respuesta1"),
+                                votoProducto.getInt("valor1"));
                     } catch (Exception error) {
                         error.printStackTrace();
                         System.out.println("ERROR AL VOTAR EL SEGUNDO PRODUCTO");
@@ -76,8 +76,8 @@ public class Controlador {
 
                         JSONObject votoProducto = new JSONObject(response);
 
-                        vista.actualizarDatosGraficos(votoProducto.getString("respuesta2"),
-                                votoProducto.getInt("valor2"));
+                        vista.actualizarDatosGraficos(votoProducto.getString("respuesta1"),
+                                votoProducto.getInt("valor1"));
 
                     } catch (Exception error) {
                         error.printStackTrace();

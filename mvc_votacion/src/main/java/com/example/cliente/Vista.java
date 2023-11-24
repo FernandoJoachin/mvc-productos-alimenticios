@@ -43,14 +43,15 @@ public class Vista {
             graficoBarras = new DefaultCategoryDataset();
             graficoPastel = new DefaultPieDataset<>();
 
+            graficoBarras.addValue(votosProducto.getInt("valor1"), "Votos", votosProducto.getString("respuesta1"));
+            graficoPastel.setValue(votosProducto.getString("respuesta1"), votosProducto.getInt("valor1"));
+
             graficoBarras.addValue(votosProducto.getInt("valor2"), "Votos", votosProducto.getString("respuesta2"));
             graficoPastel.setValue(votosProducto.getString("respuesta2"), votosProducto.getInt("valor2"));
 
             graficoBarras.addValue(votosProducto.getInt("valor3"), "Votos", votosProducto.getString("respuesta3"));
             graficoPastel.setValue(votosProducto.getString("respuesta3"), votosProducto.getInt("valor3"));
 
-            graficoBarras.addValue(votosProducto.getInt("valor4"), "Votos", votosProducto.getString("respuesta4"));
-            graficoPastel.setValue(votosProducto.getString("respuesta4"), votosProducto.getInt("valor4"));
 
             generarGraficoBarras();
             generarGraficoPastel();
@@ -60,14 +61,14 @@ public class Vista {
             marco.setSize(700, 400);
             marco.setLayout(new GridLayout(3, 1));
 
-            this.etiquetaProducto1 = new JLabel(votosProducto.getString("respuesta2"));
-            this.etiquetaProducto2 = new JLabel(votosProducto.getString("respuesta3"));
-            this.etiquetaProducto3 = new JLabel(votosProducto.getString("respuesta4"));
+            this.etiquetaProducto1 = new JLabel(votosProducto.getString("respuesta1"));
+            this.etiquetaProducto2 = new JLabel(votosProducto.getString("respuesta2"));
+            this.etiquetaProducto3 = new JLabel(votosProducto.getString("respuesta3"));
             
 
-            this.botonProducto1 = new JButton("Votar por " + votosProducto.getString("respuesta2"));
-            this.botonProducto2 = new JButton("Votar por " + votosProducto.getString("respuesta3"));
-            this.botonProducto3 = new JButton("Votar por " + votosProducto.getString("respuesta4"));
+            this.botonProducto1 = new JButton("Votar por " + votosProducto.getString("respuesta1"));
+            this.botonProducto2 = new JButton("Votar por " + votosProducto.getString("respuesta2"));
+            this.botonProducto3 = new JButton("Votar por " + votosProducto.getString("respuesta3"));
 
             marco.add(etiquetaProducto1);
             marco.add(botonProducto1);
